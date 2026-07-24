@@ -13,7 +13,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install Dependencies
         run: |
@@ -22,9 +22,10 @@ jobs:
 
       - name: Build Web Assets
         run: |
-          # 确保本地化 API 注入
-          cp public/js/netease-api.bundle.js public/js/standalone-bridge.js ios/App/App/public/js/ || true
           npx cap sync ios
+          # 确保本地化 API 注入（同步后再次确认）
+          mkdir -p ios/App/App/public/js
+          cp public/js/netease-api.bundle.js public/js/standalone-bridge.js ios/App/App/public/js/
 
       - name: Build IPA (Ad-Hoc/Unsigned for TrollStore)
         run: |
