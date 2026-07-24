@@ -30,8 +30,12 @@ jobs:
       - name: Build IPA (Ad-Hoc/Unsigned for TrollStore)
         run: |
           cd ios/App
+          # 列出结构以便调试
+          ls -R .
+          
+          # 尝试使用 project 编译，因为 Capacitor 6+ 可能没有 top-level workspace
           xcodebuild archive \
-            -workspace App.xcworkspace \
+            -project App.xcodeproj \
             -scheme App \
             -configuration Release \
             -archivePath Mineradio.xcarchive \
@@ -40,7 +44,7 @@ jobs:
             ENTITLEMENTS_REQUIRED=NO
 
           mkdir -p Payload
-          cp -r Mineradio.xcarchive/Products/Applications/App.app Payload/Mineradio.app
+          cp -r Mineradio.xcarchive/Products/Applications/*.app Payload/
           zip -r Mineradio_v2.0_Standalone.ipa Payload
           
       - name: Upload IPA
