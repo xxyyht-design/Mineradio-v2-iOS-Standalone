@@ -3,9 +3,26 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Mineradio</title>
   <meta name="referrer" content="no-referrer">
+  <style>
+    body {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      overscroll-behavior: none;
+      background: #000;
+    }
+    #desktop-titlebar {
+      display: none !important; /* iOS 不需要模拟的标题栏 */
+    }
+    #top-right {
+      top: env(safe-area-inset-top, 20px) !important;
+    }
+  </style>
+  <script src="js/netease-api.bundle.js"></script>
+  <script src="js/standalone-bridge.js"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&family=UnifrakturCook:wght@700&display=swap"
     rel="stylesheet">
